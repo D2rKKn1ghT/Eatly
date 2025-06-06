@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <title>Eatly</title>
+   <link rel="stylesheet" href="styles.css">
+   <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__logo">
+            <a href="index.html"><img src="/Assets/Logo.svg"></a>
+            
+        </div>
+        <nav class="menu">
+            <ul class="menu">
+                <li class="liner curent"><a href="menu_choice.html">Меню</a></li>
+                <li class="liner"><a href="blog.html">Блог</a></li>
+                <li class="liner"><a href="pricing.html">Подписки</a></li>
+                <li class="liner"><a href="contact.html">Поддержка</a></li>
+            </ul>
+        </nav>
+        <div class="regulog">
+            <ul class="regulog">
+                <li class="liner"><a href="signin.html">Войти</a></li>
+                <li class="reg"><a href="signup.html">Регистрация</a></li>
+            </ul>
+        </div>
+        <span class="line"></span>
+      </div>
+    </header>
+    <main>
+        <div class="separate"></div>
+        <div class="Restaurants_content">
+            <div class="cards mainres">
+                <div class="card mainres" data-id="">
+                    <div class="card_image mainres">
+                        <img src="/Assets/Resturent1.png" id="restaurant-image">
+                    </div>
+                    <div class="card_content mainres">
+                        <h3>Тот самый Каркарыч</h3>
+                        <div class="info mainres">
+                            <p>24 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p class="rate">4.8</p>
+                            <span class="bookmark mainres"><i class="ri-bookmark-fill"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separate"></div>
+        <div class="Dishes_content">
+            <div class="rezero">
+                <h2 class="smaller">Популярное 🔥</h2>
+            </div>
+            <div class="mini-cards">
+                <div class="mini-card">
+                    <i class="ri-heart-line" id="heart"></i>
+                    <div class="card_image dish">
+                        <img src="/Assets/Food1.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <span class="healthy mini"><p>Healthy</p></span>
+                        <h3>Chicken Hell</h3>
+                        <div class="info">
+                            <p>24 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p>4.8</p>    
+                        </div>
+                        <p class="price">599.99 ₽</p>
+                        <span class="add_dish"><i class="ri-add-line"></i></span>
+                    </div>
+                </div>
+                <div class="mini-card">
+                    <i class="ri-heart-line" id="heart"></i>
+                    <div class="card_image dish">
+                        <img src="/Assets/Food2.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <span class="trending mini"><p>Trending</p></span>
+                        <h3>Botanic Panic</h3>
+                        <div class="info">
+                            <p>34 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p>4.9</p>    
+                        </div>
+                        <p class="price">999.99 ₽</p>
+                        <span class="add_dish"><i class="ri-add-line"></i></span>
+                    </div>
+                </div>
+                <div class="mini-card">
+                    <i class="ri-heart-line"></i>
+                    <div class="card_image dish">
+                        <img src="/Assets/Food3.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <span class="supreme mini"><p>Supreme</p></span>
+                        <h3>Botanic Panic</h3>
+                        <div class="info">
+                            <p>34 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p>4.9</p>    
+                        </div>
+                        <p class="price">999.99 ₽</p>
+                        <span class="add_dish"><i class="ri-add-line"></i></span>
+                    </div>
+                </div>
+                <div class="mini-card">
+                    <i class="ri-heart-line"></i>
+                    <div class="card_image dish">
+                        <img src="/Assets/Food4.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <span class="healthy mini"><p>Healthy</p></span>
+                        <h3>Chicken Hell</h3>
+                        <div class="info">
+                            <p>24 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p>4.8</p>    
+                        </div>
+                        <p class="price">599.99 ₽</p>
+                        <span class="add_dish"><i class="ri-add-line"></i></span>
+                    </div>
+                </div>
+                <div class="mini-card">
+                    <i class="ri-heart-line"></i>
+                    <div class="card_image dish">
+                        <img src="/Assets/Food5.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <span class="trending mini"><p>Trending</p></span>
+                        <h3>Botanic Panic</h3>
+                        <div class="info">
+                            <p>34 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p>4.9</p>    
+                        </div>
+                        <p class="price">999.99 ₽</p>
+                        <span class="add_dish"><i class="ri-add-line"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separate" id="notNeed"></div>
+        <div class="Dishes_content" id="notSugar">
+            <div class="rezero">
+                <h2 class="smaller">Курица с овощами</h2>
+            </div>
+            <div class="mini-cards">
+                <div class="mini-card">
+                    <i class="ri-heart-line" id="heart"></i>
+                    <div class="card_image dish">
+                        <img src="/Assets/Food1.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <span class="healthy mini"><p>Healthy</p></span>
+                        <h3>Chicken Hell</h3>
+                        <div class="info">
+                            <p>24 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p>4.8</p>    
+                        </div>
+                        <p class="price">599.99 ₽</p>
+                        <span class="add_dish"><i class="ri-add-line"></i></span>
+                    </div>
+                </div>
+                <div class="mini-card">
+                    <i class="ri-heart-line" id="heart"></i>
+                    <div class="card_image dish">
+                        <img src="/Assets/Food2.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <span class="trending mini"><p>Trending</p></span>
+                        <h3>Botanic Panic</h3>
+                        <div class="info">
+                            <p>34 мин</p>
+                            <i class="ri-circle-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <p>4.9</p>    
+                        </div>
+                        <p class="price">999.99 ₽</p>
+                        <span class="add_dish"><i class="ri-add-line"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separate"></div>
+        <div class="container">
+            <div class="arrowContainerMenu fag-decor">
+                <img src="/Assets/Illustration 01.svg" class="line1">
+            </div>
+            <h2>Часто задаваемые <div class="Wordline">вопросы</div></h2>
+            <div class="accordion">
+              <div class="accordion-item">
+                <button id="accordion-button-1" aria-expanded="false">
+                  <span class="accordion-title">Сколько времени занимает доставка?</span>
+                  <span class="icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+                    Ut tortor pretium viverra suspendisse potenti.
+                  </p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button id="accordion-button-2" aria-expanded="false">
+                  <span class="accordion-title">Как это работает?</span>
+                  <span class="icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+                    Ut tortor pretium viverra suspendisse potenti.
+                  </p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button id="accordion-button-3" aria-expanded="false">
+                  <span class="accordion-title">Как работает ваша служба доставки еды?</span>
+                  <span class="icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+                    Ut tortor pretium viverra suspendisse potenti.
+                  </p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button id="accordion-button-4" aria-expanded="false">
+                  <span class="accordion-title">Какие способы оплаты вы принимаете?</span>
+                  <span class="icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+                    Ut tortor pretium viverra suspendisse potenti.
+                  </p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <button id="accordion-button-5" aria-expanded="false">
+                  <span class="accordion-title">Предлагаете ли вы скидки или рекламные акции?</span>
+                  <span class="icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut.
+                    Ut tortor pretium viverra suspendisse potenti.
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </main>
+      <footer>
+        <div class="footer-nav">
+            <div class="footer__logo">
+                <a href="index.html">
+                    <img src="/Assets/Logo.svg">
+                </a>
+            </div>
+            <nav class="menu">
+                <ul class="menu">
+                    <li class="curent liner"><a href="menu_choice.html">Меню</a></li>
+                    <li class="liner"><a href="blog.html">Блог</a></li>
+                    <li class="liner"><a href="pricing.html">Подписки</a></li>
+                    <li class="liner"><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </nav>
+        </div>
+        <span class="line"></span>
+        <div class="footer-contacts">
+            <p>© 2023 EATLY All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-instagram-line"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-facebook-line"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-twitter-fill"></i></a>
+            </div>
+        </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+      <script src="api.js" type="module"></script>
+      <script src="buying.js" type="module"></script>
+</body>
+</html>

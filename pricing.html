@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <title>Eatly</title>
+   <link rel="stylesheet" href="styles.css">
+   <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__logo">
+            <a href="index.html"><img src="/Assets/Logo.svg"></a>
+        </div>
+        <nav class="menu">
+            <ul class="menu">
+                <li class="liner"><a href="menu_choice.html">Меню</a></li>
+                <li class="liner"><a href="blog.html">Блог</a></li>
+                <li class="liner curent"><a href="pricing.html">Подписки</a></li>
+                <li class="liner"><a href="contact.html">Поддержка</a></li>
+            </ul>
+        </nav>
+        <div class="regulog">
+            <ul class="regulog">
+                <li class="liner"><a href="signin.html">Войти</a></li>
+                <li class="reg"><a href="signup.html">Регистрация</a></li>
+            </ul>
+        </div>
+        <span class="line"></span>
+      </div>
+    </header>
+    <main>
+        <div class="Banner_content">
+            <div class="banner-back">
+                <h2 class="banner-title">Наши тарифы</h2>
+                <div class="arrowContainer0">
+                    <img src="/Assets/VectorP.svg" class="arrowBan">
+                </div>
+                <div class="arrowContainer1">
+                    <img src="/Assets/01.svg" class="line1">
+                </div>
+            </div>
+            <div class="banner-main">
+                <img src="/Assets/17-Home V1 1.svg" class="banner-interface">
+                <div class="arrowContainer2">
+                    <img src="Assets/02.svg" class="line2">
+                </div>
+            </div>
+        </div>
+        <div class="Pricing-container">
+            <div class="pricing-row">
+                <div class="pricing-column">
+                    <h2>Подписки</h2>
+                    <p>Текущие доступные тарифные планы</p>
+                </div>
+                <div class="pricing-column">
+                    <h2>Базовый</h2>
+                    <p>100% Бесплатный тарифный план</p>
+                </div>
+                <div class="pricing-column">
+                    <h2>Премиум</h2>
+                    <p>Тарифный план Премиум-класса</p>
+                </div>
+            </div>
+            <div class="pricing-row">
+                <div class="pricing-column"></div>
+                <div class="pricing-column">
+                    <div class="price tar">0 ₽<sup>/мес</sup></div>
+                </div>
+                <div class="pricing-column">
+                    <div class="price tar2">500 ₽<sup>/мес</sup></div>
+                </div>
+            </div>
+            <div class="features-section">
+                <h3 class="features-title">Основные функции</h3>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <span class="feature-name">Поддержка 24/7</span>
+                        <span class="feature-icon check"><i class="ri-checkbox-circle-fill"></i></span>
+                        <span class="feature-icon check rightly"><i class="ri-checkbox-circle-fill"></i></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-name">Быстрая доставка</span>
+                        <span class="feature-icon check"><i class="ri-checkbox-circle-fill"></i></span>
+                        <span class="feature-icon check rightly"><i class="ri-checkbox-circle-fill"></i></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-name">20% Скидка на заказы</span>
+                        <span class="feature-icon check"><i class="ri-checkbox-circle-fill"></i></span>
+                        <span class="feature-icon check rightly"><i class="ri-checkbox-circle-fill"></i></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-name">История покупок</span>
+                        <span class="feature-icon check"><i class="ri-checkbox-circle-fill"></i></i></span>
+                        <span class="feature-icon check rightly"><i class="ri-checkbox-circle-fill"></i></i></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-name">Предложение недели</span>
+                        <span class="feature-icon cross"><i class="ri-close-circle-fill"></i></span>
+                        <span class="feature-icon check rightly"><i class="ri-checkbox-circle-fill"></i></i></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-name">Панель управления</span>
+                        <span class="feature-icon cross"><i class="ri-close-circle-fill"></i></span>
+                        <span class="feature-icon check rightly"><i class="ri-checkbox-circle-fill"></i></i></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-name">Доступ к премиум чату</span>
+                        <span class="feature-icon cross"><i class="ri-close-circle-fill"></i></span>
+                        <span class="feature-icon check rightly"><i class="ri-checkbox-circle-fill"></i></i></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="button-container">
+                <div class="button secret"></div>
+                <a href="#" class="button fixbut" id="freePrice">Выбрать</a>
+                <a href="#" class="button" id="premPrice">Выбрать</a>
+            </div>
+        </div>
+        <div class="separate"></div>
+        <div class="Purchases_content">
+            <h2>Контролируйте <span class="Wordline">Покупки</span> с Панелью Мониторинга</h2>
+            <div class="purch-cards">
+                <div class="purch-card">
+                    <div class="card_image purch">
+                        <img src="/Assets/Food1.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <h3>Chicken Hell</h3>
+                        <div class="info purch">
+                            <p class="delivery_status">В пути</p>
+                            <p class="del time">13:49</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="purch-card">
+                    <div class="card_image purch">
+                        <img src="/Assets/Food2.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <h3>Botanic Panic</h3>
+                        <div class="info purch">
+                            <p class="delivery_status">Доставлено</p>
+                            <p class="del time problem">Вчера</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="purch-card">
+                    <div class="card_image purch">
+                        <img src="/Assets/Food3.png">
+                    </div>
+                    <div class="mini_card_content">
+                        <h3>Feel de Fish</h3>
+                        <div class="info purch">
+                            <p class="delivery_status cancel">Отмена</p>
+                            <p class="del time">Вчера</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Purchases_infografic">
+                <div class="infografic_title">
+                    <h3>Покупки</h3>
+                    <form>
+                        <select name="time-select" id="time-select">
+                            <option value="today">Сегодня</option>
+                            <option value="yesterday">Вчера</option>
+                            <option value="week">Неделя</option>
+                            <option selected value="month">Месяц</option>
+                            <option value="year">Год</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="infografic_objects">
+                    <div class="expence">
+                        <span class="expence_circ"><i class="ri-shopping-bag-line"></i></span>
+                        <h4>Расходы</h4>
+                        <p>Увиличились на 10%</p>
+                        <p class="price">29749.95 ₽</p>
+                        <div class="progress">
+                            <div class="expence-progress-bar" role="progressbar" style="width: 69%"></div>
+                        </div>
+                    </div>
+                    <div class="vocher">
+                        <span class="vocher_circ"><i class="ri-coupon-3-line"></i></span>
+                        <h4>Использование скидок</h4>
+                        <p>Увиличилось на 5%</p>
+                        <p class="price">14559.94 ₽</p>
+                        <div class="progress">
+                            <div class="expence-progress-bar" role="progressbar" style="width: 49%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="line"></span>
+        <div class="Feedback_content">
+            <h2>Отзывы <span class="Wordline">покупателей</span></h2>
+            <div class="feedback_cards swiper-container" id="mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="feedback_card swiper-slide">
+                        <object type="image/svg+xml" data="/assets/Path 173.svg" width="87.47" height="21.47" ></object>
+                        <div class="feedback_info">
+                            <div class="feedback-profile">
+                                <img src="/Assets/Pic.png">
+                                <h5>Александр Б.</h5>
+                                <p>1 год с нами</p>
+                            </div>
+                            <p class="message">“Увеличение расходов Онлайн-оплата счетов помогает компаниям экономить время, работать быстрее и максимально экономить усилия клиентов. Онлайн-оплата счетов помогает компаниям экономить время ”</p>
+                            <div class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i></div>
+                        </div>
+                    </div>
+                    <div class="feedback_card swiper-slide">
+                        <object type="image/svg+xml" data="/assets/Path 173.svg" width="87.47" height="21.47" ></object>
+                        <div class="feedback_info">
+                            <div class="feedback-profile">
+                                <img src="/Assets/Pic.png">
+                                <h5>Александр Б.</h5>
+                                <p>1 год с нами</p>
+                            </div>
+                            <p class="message">“Увеличение расходов Онлайн-оплата счетов помогает компаниям экономить время, работать быстрее и максимально экономить усилия клиентов. Онлайн-оплата счетов помогает компаниям экономить время ”</p>
+                            <div class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i></div>
+                        </div>
+                    </div>
+                    <div class="feedback_card swiper-slide">
+                        <object type="image/svg+xml" data="/assets/Path 173.svg" width="87.47" height="21.47" ></object>
+                        <div class="feedback_info">
+                            <div class="feedback-profile">
+                                <img src="/Assets/Pic.png">
+                                <h5>Александр Б.</h5>
+                                <p>1 год с нами</p>
+                            </div>
+                            <p class="message">“Увеличение расходов Онлайн-оплата счетов помогает компаниям экономить время, работать быстрее и максимально экономить усилия клиентов. Онлайн-оплата счетов помогает компаниям экономить время ”</p>
+                            <div class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i></div>
+                        </div>
+                    </div>
+                    <div class="feedback_card swiper-slide">
+                        <object type="image/svg+xml" data="/assets/Path 173.svg" width="87.47" height="21.47" ></object>
+                        <div class="feedback_info">
+                            <div class="feedback-profile">
+                                <img src="/Assets/Pic.png">
+                                <h5>Александр Б.</h5>
+                                <p>1 год с нами</p>
+                            </div>
+                            <p class="message">“Увеличение расходов Онлайн-оплата счетов помогает компаниям экономить время, работать быстрее и максимально экономить усилия клиентов. Онлайн-оплата счетов помогает компаниям экономить время ”</p>
+                            <div class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i></div>
+                        </div>
+                    </div>
+                    <div class="feedback_card swiper-slide">
+                        <object type="image/svg+xml" data="/assets/Path 173.svg" width="87.47" height="21.47" ></object>
+                        <div class="feedback_info">
+                            <div class="feedback-profile">
+                                <img src="/Assets/Pic.png">
+                                <h5>Александр Б.</h5>
+                                <p>1 год с нами</p>
+                            </div>
+                            <p class="message">“Увеличение расходов Онлайн-оплата счетов помогает компаниям экономить время, работать быстрее и максимально экономить усилия клиентов. Онлайн-оплата счетов помогает компаниям экономить время ”</p>
+                            <div class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i></div>
+                        </div>
+                    </div>
+                    <div class="feedback_card swiper-slide">
+                        <object type="image/svg+xml" data="/assets/Path 173.svg" width="87.47" height="21.47" ></object>
+                        <div class="feedback_info">
+                            <div class="feedback-profile">
+                                <img src="/Assets/Pic.png">
+                                <h5>Александр Б.</h5>
+                                <p>1 год с нами</p>
+                            </div>
+                            <p class="message">“Увеличение расходов Онлайн-оплата счетов помогает компаниям экономить время, работать быстрее и максимально экономить усилия клиентов. Онлайн-оплата счетов помогает компаниям экономить время ”</p>
+                            <div class="stars"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-progressbar">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+      </main>
+      <footer>
+        <div class="footer-nav">
+            <div class="footer__logo">
+                <a href="index.html">
+                    <img src="/Assets/Logo.svg">
+                </a>
+            </div>
+            <nav class="menu">
+                <ul class="menu">
+                    <li class="liner"><a href="menu_choice.html">Меню</a></li>
+                    <li class="liner"><a href="blog.html">Блог</a></li>
+                    <li class="curent liner"><a href="pricing.html">Подписки</a></li>
+                    <li class="liner"><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </nav>
+        </div>
+        <span class="line"></span>
+        <div class="footer-contacts">
+            <p>© 2023 EATLY All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-instagram-line"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-facebook-line"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-twitter-fill"></i></a>
+            </div>
+        </div>
+      </footer>
+      <script src="effects.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Eatly</title>
+        <link rel="stylesheet" href="styles.css">
+        <link
+         href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+         rel="stylesheet"/>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    </head>
+    <body>
+        <aside>
+            <a href="index.html"><img src="/Assets/Logo2.svg" class="Logo-sign"></a>
+            <div class="start-sign__text">
+                <h2 class="sign__text sign-in">Войти В Eatly</h2>
+            </div>
+            <div class="alter-sign">
+                <span><i class="ri-google-fill"></i></span>
+                <span><i class="ri-apple-fill"></i></span>
+            </div>
+            <div class="container-another-start__text">
+                <p class="another-start__text">ИЛИ</p>
+            </div>
+            <div class="inputs-sign">
+                <input class="input-sign email-sign" type="email" placeholder="Ваш email">
+                <input class="input-sign password-sign" type="password" placeholder="Пароль" id="password-input">
+                <a href="#" class="password-control seccontr" onclick="return show_hide_password(this);"></a>
+                <div class="button-container">
+                    <button class="send-reg" id="login">Войти</button>
+                </div>
+            </div>
+            <div class="another-situation">
+                <p>Нет аккаунта? </p><a href="signup.html"><div class="Wordline">Зарегистрироваться</div></a>
+            </div>
+            <div class="another-situation">
+                <p>Забыли пароль? </p><a href="password.html"><div class="Wordline">Сбросить пароль</div></a>
+            </div>
+            <div class="copyright-sign">
+                <p>Privacy Policy</p>
+                <p>Copyright 2022</p>
+            </div>
+        </aside>
+        <main class="swiper-part">
+            <div class="swiper-container" id="SignSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="pattern">
+                            <img class="pattern" src="/Assets/pattern.png">
+                        </div>
+                        <div class="dishhero">
+                            <img class="dishhero" src="/Assets/Hero2.png">
+                        </div>
+                        <h2 class="Integ">Поиск Еды С Любовью</h2>
+                        <div class="slider__text">Eatly - Это Сервис Доставки Еды, В Котором Представлено Более 2 Тысяч Блюд, Включая Азиатские, Китайские, Итальянские И Многие Другие. Наш Сервис Поможет Вам Управлять Заказами И Деньгами.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="pattern">
+                            <img class="pattern" src="/Assets/pattern.png">
+                        </div>
+                        <div class="dishhero">
+                            <img class="dishhero" src="/Assets/Food Image.svg">
+                        </div>
+                        <h2 class="Integ">Поиск Еды С Любовью</h2>
+                        <div class="slider__text">Eatly - Это Сервис Доставки Еды, В Котором Представлено Более 2 Тысяч Блюд, Включая Азиатские, Китайские, Итальянские И Многие Другие. Наш Сервис Поможет Вам Управлять Заказами И Деньгами.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="pattern">
+                            <img class="pattern" src="/Assets/pattern.png">
+                        </div>
+                        <div class="dishhero">
+                            <img class="dishhero" src="/Assets/Hero2.png">
+                        </div>
+                        <h2 class="Integ">Поиск Еды С Любовью</h2>
+                        <div class="slider__text">Eatly - Это Сервис Доставки Еды, В Котором Представлено Более 2 Тысяч Блюд, Включая Азиатские, Китайские, Итальянские И Многие Другие. Наш Сервис Поможет Вам Управлять Заказами И Деньгами.</div>
+                    </div>
+                </div>
+                <div class="blog-slider__pagination"></div>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+        <script src="api.js" type="module"></script>
+        <script src="sign-swiper.js" type="module"></script>
+    </body>
+</html>

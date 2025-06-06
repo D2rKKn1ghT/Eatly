@@ -1,0 +1,31 @@
+{
+  "name": "project-rksp-d2rkkn1ght",
+  "version": "1.0.0",
+  "description": "- Главная страница\r - Меню ресторана\r - Оформление заказа с выбором ресторана и блюд\r - Подарочные купоны\r - Создание скидочного купона при регистрации на 1 раз\r - Карта заказа\r - Системы подписок\r - Блог\r - Статус заказа\r - Панель управления\r - FQA\r - Просмотр отзывов\r - Помощь\r - Корзина\r - Поиск\r - Фильтр\r - Регистрация и вход\r - Забыли пороль?\r - Мобильная версия",
+  "main": "api.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-storage": "node init-storage.js",
+    "reset-storage": "rm -rf data && npm run init-storage",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitverse.ru/rskp/project-rksp-D2rKKn1ghT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "mongoose": "^8.15.1",
+    "mysql2": "^3.14.1",
+    "nodemailer": "^7.0.3",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
+  }
+}

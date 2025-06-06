@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <title>Eatly</title>
+   <link rel="stylesheet" href="styles.css">
+   <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__logo">
+            <a href="index.html"><img src="/Assets/Logo.svg"></a>
+            
+        </div>
+        <nav class="menu">
+            <ul class="menu">
+                <li class="liner curent"><a href="menu_choice.html">Меню</a></li>
+                <li class="liner"><a href="blog.html">Блог</a></li>
+                <li class="liner"><a href="pricing.html">Подписки</a></li>
+                <li class="liner"><a href="contact.html">Поддержка</a></li>
+            </ul>
+        </nav>
+        <div class="regulog">
+            <ul class="regulog">
+                <li class="liner"><a href="signin.html">Войти</a></li>
+                <li class="reg"><a href="signup.html">Регистрация</a></li>
+            </ul>
+        </div>
+        <span class="line"></span>
+      </div>
+    </header>
+    <main>
+        <div class="separate"> </div>
+        <div class="Map__order_content">
+            <div class="map">
+               <img src="/Assets/Frame 31.png">
+            </div>
+            <div class="trace">
+                <img src="/Assets/Point.svg">
+                <div class="start"></div>
+                <div class="destination">
+                    <img src="/Assets/DestIcon.svg" alt="">
+                </div>
+            </div>
+            <div class="order_cards">
+                <div class="purch-card order desti">
+                    <div class="card_image purch order">
+                        <img src="/Assets/Food1.png">
+                    </div>
+                    <div class="mini_card_content order">
+                        <h3>Chicken Hell</h3>
+                        <div class="info purch order">
+                            <p class="del time order">15 мин</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="purch-card order street">
+                    <div class="mini_card_content order street">
+                        <div class="info purch order">
+                            <p class="delivery_status order">Horizenal Road Stree 1178 California, USA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Profile_content">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <img src="/Assets/boykisser-seeklogo.svg" alt="Rider Image">
+                        <div class="profile-header-text">
+                            <h1>Дэвид Смит</h1>
+                            <p>Доставщик еды</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="address">
+                            <div class="icon-container">
+                                <div class="icon"><img src="Assets/desti.svg" alt=""></div>
+                                <div class="vertical-line"></div>
+                                <div class="icon2"><img src="Assets/clock.svg" alt=""></div>
+                            </div>
+                            <div class="address-text">
+                                <p class="address-title">Ваш адрес</p>
+                                <p>Horizenal Road Stree 1178 California, USA</p>
+                                <p class="time-title">Время доставки</p>
+                                <p>15 Минут</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-button">
+                        <button class="pending-button">Завершить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="separate"></div>
+            <div class="Cart_content">
+                <img class="decor" src="/Assets/Illlustration.svg">
+                <div class="cart-container">
+                    <!-- Добавляется Динамически -->
+                    <!-- <div class="food-item">
+                        <img src="Assets/Food1.png" alt="Chicken Hell 1" class="food-image">
+                        <div class="food-details">
+                            <h3 class="food-name">Chicken Hell</h3>
+                            <p class="food-price">649,5₽</p>
+                        </div>
+                        <div class="quantity-control">
+                            <button class="quantity-button minus"><img src="/Assets/Mins.svg"></button>
+                            <span class="quantity">03</span>
+                            <button class="quantity-button plus"><img src="/Assets/Plus.svg"></button>
+                            <p class="total-price">1948,5₽</p>
+                        </div>
+                    </div>
+                    <div class="food-item">
+                        <img src="/Assets/Food2.png" alt="Chicken Hell 2" class="food-image">
+                        <div class="food-details">
+                            <h3 class="food-name">Chicken Hell</h3>
+                            <p class="food-price">999,5₽</p>
+                        </div>
+                        <div class="quantity-control">
+                            <button class="quantity-button minus"><img src="/Assets/Mins.svg"></button>
+                            <span class="quantity">01</span>
+                            <button class="quantity-button plus"><img src="/Assets/Plus.svg"></button>
+                            <p class="total-price">999,5₽</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="Cupon_content">
+                <div class="cupon-container">
+                    <div class="coupon">
+                        <div class="coupon-input">
+                            <img src="Assets/cupon.svg" alt="Coupon Icon">
+                            <input type="text" placeholder="Применить купон">
+                        </div>
+                        <button class="apply-button ketchup">Применить</button>
+                    </div>
+            
+                    <div class="summary">
+                        <!-- <div class="summary-item">
+                            <span class="label">Пердварительно</span>
+                            <span class="value">2948₽</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Доставка</span>
+                            <span class="value">179,5₽</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span class="label">Всего</span>
+                            <span class="value">3127,5₽</span>
+                        </div> -->
+                    </div>
+                    <div class="arrow-decor">
+                        <img src="/Assets/Arrow.svg">
+                    </div>
+                    <button class="review-payment-button">Перейти к оплате</button>
+                    <div class="arrow-decor mirror">
+                        <img src="/Assets/Arrow.svg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="separate"></div>
+        <div class="dispatch">
+            <div class="dispatch-form">
+                <h2>Получи 50% скидку</h2>
+                <form>
+                    <input class="email" type="text" placeholder="Введите ваш email">
+                    <button class="submit" type="submit">Отправить</button>
+                </form>
+            </div>
+            <img src="/Assets/Food Image.svg">
+        </div>
+      </main>
+      <footer>
+        <div class="footer-nav">
+            <div class="footer__logo">
+                <a href="index.html">
+                    <img src="/Assets/Logo.svg">
+                </a>
+            </div>
+            <nav class="menu">
+                <ul class="menu">
+                    <li class="liner curent"><a href="menu_choice.html">Меню</a></li>
+                    <li class="liner"><a href="blog.html">Блог</a></li>
+                    <li class="liner"><a href="pricing.html">Подписки</a></li>
+                    <li class="liner"><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </nav>
+        </div>
+        <span class="line"></span>
+        <div class="footer-contacts">
+            <p>© 2023 EATLY All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-instagram-line"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-facebook-line"></i></a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=c0XvjHjcGkaNpMwB"><i class="ri-twitter-fill"></i></a>
+            </div>
+        </div>
+      </footer>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="buying.js" type="module"></script>
+    <script src="effects.js" type="module"></script>
+</body>
+</html>
