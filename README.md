@@ -15,4 +15,5 @@
 - Забыли пороль?
 
 Ссылка на макет: https://www.figma.com/design/jHDVsiVR8JBpkMsYehKCEj/Eatly?node-id=1-11265&t=f6Pq2Y6a3TaMvTAL-0
+
 Запуск: npm start
