@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.24.0/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -27,11 +28,20 @@
                 <li class="liner"><a href="contact.html">Поддержка</a></li>
             </ul>
         </nav>
-        <div class="regulog">
+        <div class="regulog" id="regulog" style="display: none;" >
             <ul class="regulog">
                 <li class="liner"><a href="signin.html">Войти</a></li>
                 <li class="reg"><a href="signup.html">Регистрация</a></li>
             </ul>
+        </div>
+        <div class="cart-header" id="cartHeader" style="display: none;">
+            <a href="menu_order.html" class="cart-icon-link">
+                <i class="ri-shopping-cart-line"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+            <button class="logout-btn" id="logoutBtn" >
+                <i class="ri-logout-box-line"></i>
+            </button>
         </div>
         <span class="line"></span>
       </div>
@@ -311,6 +321,7 @@
             </div>
         </div>
       </footer>
+      <script src="auth-manager.js"></script>
       <script src="effects.js" type="module"></script>
 </body>
 </html>

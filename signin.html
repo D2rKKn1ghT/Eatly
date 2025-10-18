@@ -12,6 +12,7 @@
          <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
          <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.24.0/dist/sweetalert2.all.min.js"></script>
     </head>
     <body>
         <aside>
@@ -31,7 +32,7 @@
                 <input class="input-sign password-sign" type="password" placeholder="Пароль" id="password-input">
                 <a href="#" class="password-control seccontr" onclick="return show_hide_password(this);"></a>
                 <div class="button-container">
-                    <button class="send-reg" id="login">Войти</button>
+                    <button type="button" class="send-reg" id="login">Войти</button>
                 </div>
             </div>
             <div class="another-situation">
@@ -84,6 +85,7 @@
         </main>
         <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
         <script src="api.js" type="module"></script>
+        <script src="auth-manager.js"></script>
         <script src="sign-swiper.js" type="module"></script>
     </body>
 </html>

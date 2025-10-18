@@ -73,8 +73,8 @@ const vocherPercent = document.querySelector('.vocher p:nth-child(3)');
 
 const progressValues = {
     'today': { 
-        expence: { width: '20%', price: '5949.99 ₽', percent: '--%' },
-        vocher: { width: '10%', price: '2911.99 ₽', percent: '--%' }
+        expence: { width: '20%', price: '5949.99 ₽', percent: 'Ø' },
+        vocher: { width: '10%', price: '2911.99 ₽', percent: 'Ø' }
     },
     'yesterday': { 
         expence: { width: '30%', price: '8924.99 ₽', percent: 'Увеличились на 3%' },
@@ -114,12 +114,28 @@ if (typeof document.querySelector('#freePrice') !== 'undefined'){
     try{
         const freeButton = document.querySelector('#freePrice');
         freeButton.addEventListener('click', async () => {
-            alert('Уже подключен!' );
+            const result = await Swal.fire({
+                icon: 'info',
+                title: 'Информация',
+                text: 'Уже подключен!',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showConfirmButton: true
             });
+        });
         const premButton = document.querySelector('#premPrice');
         premButton.addEventListener('click', async () => {
-            alert('Платеж временно недоступен!' );
-            }); 
+            const result = await Swal.fire({
+                icon: 'error',
+                title: 'Внимание',
+                text: 'Платеж временно недоступен!',
+                confirmButtonText: 'Понятно',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showConfirmButton: true
+            });
+        });
     }catch{
 
     }
@@ -127,20 +143,24 @@ if (typeof document.querySelector('#freePrice') !== 'undefined'){
 // Library Swipper
 // https://swiperjs.com
 document.addEventListener('DOMContentLoaded', function() {
-    var swiper = new Swiper('.swiper-container', {
-    observer: true,
-    observeParents: true,
-    slidesPerView: 2.6,
-    spaceBetween: 45,
-    loop: false,
-    on: {
-    slideChange: function () {
-    updateProgressBar(this);
-    },
-    init: function () {
-    updateProgressBar(this);
-    },
-    },
+    // debugger;
+    const swiperContainer = document.querySelector('.swiper-container');
+    if (!swiperContainer) return;
+    
+    new Swiper('.swiper-container', {
+        observer: true,
+        observeParents: true,
+        slidesPerView: 2.6,
+        spaceBetween: 45,
+        loop: false,
+        on: {
+            slideChange: function () {
+                updateProgressBar(this);
+            },
+            init: function () {
+                updateProgressBar(this);
+            },
+        },
     });
 });
 
@@ -151,33 +171,91 @@ function updateProgressBar(swiperInstance) {
     const progress = swiperInstance.activeIndex / (swiperInstance.slides.length - 1);
     progressBar.style.width = `${progress * 100}%`;
 }
-if (typeof document.querySelector('.problem-send') !== 'undefined'){
-    try{
-        const supportButton = document.querySelector('.problem-send');
-        supportButton.addEventListener('click', async () => {
-        const name = document.getElementById('FIO').value;
-        const email = document.getElementById('email-text').value;
-        const problem = document.getElementById('problem').value;
 
-        try {
-            const response = await sendSupportRequest({ name, email, problem });
-            
-
-            if (response.success) {
-            alert('✅ ' + response.message);
-
-            document.getElementById('FIO').value = '';
-            document.getElementById('email-text').value = '';
-            document.getElementById('problem').value = '';
-            } else {
-            alert('❌ ' + response.error);
-            }
-        } catch (error) {
-            alert('❌ Ошибка при отправке обращения: ' + error.message);
-        }
-        });
-    }catch{
-
+function validateSupportForm(name, email, problem) {
+    if (!name || !email || !problem) {
+        return 'Пожалуйста, заполните все поля';
     }
+
+    if (!validateName(name)) {
+        return 'ФИО должно содержать только буквы и быть не короче 2 символов';
+    }
+
+    if (!validateEmail(email)) {
+        return 'Пожалуйста, введите корректный email адрес';
+    }
+
+    if (problem.length < 10) {
+        return 'Описание проблемы должно содержать минимум 10 символов';
+    }
+
+    if (problem.length > 1000) {
+        return 'Описание проблемы слишком длинное (максимум 1000 символов)';
+    }
+
+    return null;
 }
 
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validateName(name) {
+    const nameRegex = /^[A-Za-zА-Яа-яЁё\s]{2,50}$/;
+    return nameRegex.test(name);
+}
+
+if (typeof document.querySelector('.problem-send') !== 'undefined' && document.querySelector('.problem-send')) {
+    try{
+        const supportButton = document.querySelector('.problem-send');
+        
+        supportButton.addEventListener('click', async (e) => {
+            const name = document.getElementById('FIO').value.trim();
+            const email = document.getElementById('email-text').value.trim();
+            const problem = document.getElementById('problem').value.trim();
+
+            const validationError = validateSupportForm(name, email, problem);
+            if (validationError) {
+                await Swal.fire({
+                    icon: 'warning',
+                    title: 'Ошибка валидации',
+                    text: validationError,
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                });
+                return;
+            }
+
+            await Swal.fire({
+                title: 'Отправка обращения...',
+                text: 'Пожалуйста, подождите',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                timer:1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            try {
+                await sendSupportRequest({ name, email, problem });
+            } catch (error) {
+                
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Ошибка отправки',
+                    text: 'Ошибка при отправке обращения: ' + error.message,
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                });
+            }
+        });
+
+    } catch(error) {
+        console.error('Error setting up support button:', error);
+    }
+}

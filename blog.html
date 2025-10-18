@@ -27,12 +27,21 @@
                   <li class="liner"><a href="contact.html">Поддержка</a></li>
               </ul>
           </nav>
-          <div class="regulog">
-              <ul class="regulog">
-                  <li class="liner"><a href="signin.html">Войти</a></li>
-                  <li class="reg"><a href="signup.html">Регистрация</a></li>
-              </ul>
-          </div>
+        <div class="regulog" id="regulog" style="display: none;" >
+            <ul class="regulog">
+                <li class="liner"><a href="signin.html">Войти</a></li>
+                <li class="reg"><a href="signup.html">Регистрация</a></li>
+            </ul>
+        </div>
+        <div class="cart-header" id="cartHeader" style="display: none;">
+            <a href="menu_order.html" class="cart-icon-link">
+                <i class="ri-shopping-cart-line"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+            <button class="logout-btn" id="logoutBtn" >
+                <i class="ri-logout-box-line"></i>
+            </button>
+        </div>
           <span class="line"></span>
         </div>
       </header>
@@ -45,4 +54,5 @@
             </div>
         </div>
       </main>
+      <script src="auth-manager.js"></script>
 </body>

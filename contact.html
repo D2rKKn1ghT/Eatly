@@ -10,6 +10,7 @@
          <link rel="preconnect" href="https://fonts.googleapis.com">
          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
          <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.24.0/dist/sweetalert2.all.min.js"></script>
     </head>
     <body>
         <header class="header">
@@ -26,12 +27,21 @@
                       <li class="liner curent"><a href="contact.html">Поддержка</a></li>
                   </ul>
               </nav>
-              <div class="regulog">
-                  <ul class="regulog">
-                      <li class="liner"><a href="signin.html">Войти</a></li>
-                      <li class="reg"><a href="signup.html">Регистрация</a></li>
-                  </ul>
-              </div>
+                <div class="regulog" id="regulog" style="display: none;" >
+                    <ul class="regulog">
+                        <li class="liner"><a href="signin.html">Войти</a></li>
+                        <li class="reg"><a href="signup.html">Регистрация</a></li>
+                    </ul>
+                </div>
+                <div class="cart-header" id="cartHeader" style="display: none;">
+                    <a href="menu_order.html" class="cart-icon-link">
+                        <i class="ri-shopping-cart-line"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                    <button class="logout-btn" id="logoutBtn" >
+                        <i class="ri-logout-box-line"></i>
+                    </button>
+                </div>
               <span class="line"></span>
             </div>
           </header>
@@ -47,7 +57,7 @@
                 <textarea class="textform prob" name="supproblem" id="problem" placeholder="Опишите вашу проблему"></textarea>
             </div>
             <div class="send-content">
-                <button class="problem-send">Отправить</button>
+                <button type="button" class="problem-send">Отправить</button>
             </div>
             <div class="arrow-content">
                 <img class="Arrow_send" src="/Assets/Arrow.svg">
@@ -80,6 +90,7 @@
                 </div>
             </div>
           </footer>
+          <script src="auth-manager.js"></script>
           <script type="module" src="effects.js"></script>
     </body>
 </html>

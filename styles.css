@@ -58,6 +58,7 @@ nav .menu li a {
     align-items: center;
     font-weight: 700;
     margin-right: 54px;
+    margin-top: -35px;
 }
 .regulog a{
     text-decoration: none;
@@ -464,6 +465,7 @@ nav .menu li a {
     overflow: hidden;
     background-color: white;
     margin: 20px;
+    cursor: pointer;
 }
 
 .card img {
@@ -2885,4 +2887,103 @@ a .Logo-sign{
 
 .restaurant-card:hover {
   transform: translateY(-5px);
+}
+
+
+
+
+/* Cart icon and log out on pages */
+.cart-header {
+    position: absolute;
+    right: 120px;
+    margin-top: -45px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    gap: 20px;
+}
+.visible{
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+.cart-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(74, 58, 255, 0.3);
+}
+
+.cart-icon-link:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(74, 58, 255, 0.4);
+}
+
+.cart-icon-link i {
+  font-size: 1.3rem;
+  color: gray;
+}
+
+.cart-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #FF6B6B;
+  color: white;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  animation: pulse 2s infinite;
+}
+
+.cart-count[data-count="99+"] {
+  padding: 0 4px;
+  min-width: 24px;
+  border-radius: 10px;
+  font-size: 0.6rem;
+}
+/* Стили для кнопки выхода */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--primary);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.3rem;
+}
+
+.logout-btn:hover {
+    background: #FB471D;
+    transform: scale(1.05);
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }

@@ -8,7 +8,12 @@ let allRestaurants = [];
 
 window.addEventListener('error', function(event) {
   console.error('Global error:', event.error);
-  alert('Произошла критическая ошибка. Пожалуйста, обновите страницу.');
+  Swal.fire({
+    icon: 'error',
+    title: 'Ошибка',
+    text: 'Произошла критическая ошибка. Пожалуйста, обновите страницу.',
+    confirmButtonText: 'OK'
+  });
 });
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -21,16 +26,22 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     renderRestaurants(restaurants);
-
+    if (!window.location.pathname.includes('menu_choice.html')) {
+        return;
+    }
     if (typeof Swiper !== 'undefined') {
       initSwiper();
     }
-
     setupEventHandlers();
     
   } catch (error) {
     console.error('Ошибка инициализации:', error);
-    alert('Произошла ошибка при загрузке данных. Пожалуйста, обновите страницу.');
+    Swal.fire({
+      icon: 'error',
+      title: 'Ошибка загрузки',
+      text: 'Произошла ошибка при загрузке данных. Пожалуйста, обновите страницу.',
+      confirmButtonText: 'OK'
+    });
   }
 });
 
@@ -127,8 +138,47 @@ function setupEventHandlers() {
   accordionItems.forEach(item => {
     item.addEventListener('click', toggleAccordion);
   });
+  setupCategoryButtons();
+  setupSortButtons();
 }
+function setupCategoryButtons() {
+  const categoryButtonsContainer = document.querySelector('.category-buttons');
+  
+  if (!categoryButtonsContainer) return;
+  
+  categoryButtonsContainer.addEventListener('click', function(e) {
 
+    const button = e.target.closest('.category-button');
+    if (!button) return;
+
+    const allButtons = this.querySelectorAll('.category-button');
+    allButtons.forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+    const category = button.dataset.category || button.classList[1];
+    filterByCategory(category);
+  });
+}
+function filterByCategory(category) {
+  console.log('Фильтрация по категории:', category);
+}
+function setupSortButtons() {
+  const sortButtonsContainer = document.querySelector('.sort-options');
+  
+  if (!sortButtonsContainer) return;
+  
+  sortButtonsContainer.addEventListener('click', function(e) {
+    const button = e.target.closest('.sort-button');
+    if (!button) return;
+    
+
+    const allSortButtons = this.querySelectorAll('.sort-button');
+    allSortButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+  });
+}
 function toggleAccordion() {
   const itemToggle = this.getAttribute('aria-expanded');
 
@@ -194,12 +244,17 @@ if (window.location.pathname.includes('menu_restaurant.html')) {
       
     } catch (error) {
       console.error('Ошибка загрузки меню ресторана:', error);
-      alert(error.message || 'Не удалось загрузить меню ресторана');
+      Swal.fire({
+        icon: 'error',
+        title: 'Ошибка',
+        text: error.message || 'Не удалось загрузить меню ресторана',
+        confirmButtonText: 'OK'
+      });
       window.location.href = 'menu_choice.html';
     }
   });
 }
-
+debugger;
 function updateRestaurantInfo(restaurant) {
   const titleElement = document.querySelector('.mainres h3');
   if (titleElement) {
@@ -384,13 +439,50 @@ function saveCart() {
 function generateItemId(item) {
   return `${item.restaurantId}-${`${item.name}-${item.price}`}`;
 }
-function addToCart(itemData) {
+async function addToCart(itemData) {
+  if (!isAuthenticated()) {
+    console.log('User not authenticated, redirecting to login...');
+    const pendingCartItem = {
+      item: itemData,
+      restaurantId: localStorage.getItem('selectedRestaurantId'),
+      timestamp: Date.now()
+    };
+    localStorage.setItem('pendingCartItem', JSON.stringify(pendingCartItem));
+    localStorage.setItem('returnUrl', window.location.href);
+
+    const result = await Swal.fire({
+      title: 'Требуется авторизация',
+      text: 'Для добавления в корзину необходимо войти в систему',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Войти',
+      cancelButtonText: 'Отмена'
+    });
+
+    if (result.isConfirmed) {
+      window.location.href = 'signin.html';
+    }
+    return;
+  }
+
   const currentRestaurant = localStorage.getItem('selectedRestaurantId');
 
   if (cart.items.length > 0 && cart.restaurantId !== currentRestaurant) {
-    if (!confirm('Добавить из другого ресторана? Текущая корзина будет очищена.')) {
+    const result = await Swal.fire({
+      title: 'Добавить из другого ресторана?',
+      text: 'Текущая корзина будет очищена.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Очистить',
+      cancelButtonText: 'Отмена',
+      confirmButtonColor: '#5952b8ff',
+      cancelButtonColor: '#d33',
+    });
+
+    if (!result.isConfirmed) {
       return;
     }
+    
     resetCart();
   }
 
@@ -414,6 +506,27 @@ function addToCart(itemData) {
   saveCart();
 }
 
+
+function isAuthenticated() {
+  const token = localStorage.getItem('token');
+  if (!token) return false;
+  
+  try {
+    // Проверка валидности токена
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const isExpired = payload.exp * 1000 < Date.now();
+    
+    if (isExpired) {
+      localStorage.removeItem('token');
+      return false;
+    }
+    return true;
+  } catch (error) {
+    localStorage.removeItem('token');
+    return false;
+  }
+}
+
 function increaseQuantity(itemId) {
   const item = cart.items.find(item => item.id === itemId);
   if (item) {
@@ -433,49 +546,106 @@ function decreaseQuantity(itemId) {
     saveCart();
   }
 }
-
+let confirm = 0;
 async function placeOrder() {
   try {
     const token = localStorage.getItem('token');
     if (!token) throw new Error('Требуется авторизация');
     
-    const decoded = jwt_decode(token);
-    if (decoded.exp * 1000 < Date.now()) {
-      if (confirm('Сессия истекла. Войти снова?')) {
-        window.location.href = 'signin.html';
+    try {
+      const decoded = jwt_decode(token);
+      if (decoded.exp * 1000 < Date.now()) {
+        const result = await Swal.fire({
+          title: 'Сессия истекла',
+          text: 'Войти снова?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Войти',
+          cancelButtonText: 'Отмена'
+        });
+        
+        if (result.isConfirmed) {
+          window.location.href = 'signin.html';
+        }
+        return;
       }
+    } catch (error) {
+      console.error("Ошибка декодирования токена:", error);
+      localStorage.removeItem('token');
+      window.location.href = 'signin.html';
       return;
     }
 
     if (cart.items.length === 0) throw new Error('Корзина пуста');
-    
-    const response = await fetch(`${API_URL}/api/orders`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        restaurantId: cart.restaurantId,
-        items: cart.items.map(item => ({
-          menu_item_id: item.menuItemId || item.id,
-          quantity: item.quantity,
-          price: item.price
-        })),
-        totalAmount: cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0)
-      })
-    });
 
-    if (!response.ok) throw new Error('Ошибка сервера');
+    await Swal.fire({
+      title: "Вы уверены?",
+      text: "Вы точно хотите оформить данный заказ?",
+      icon: "question",
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      showCancelButton: true,
+      confirmButtonColor: "#5952b8ff",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Да",
+      cancelButtonText: "Нет"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        confirm = 1;
+      } else{
+        confirm = 0;
+        return;
+      }
+    });
+    if (confirm==1){
+      await Swal.fire({
+        title: 'Оформление заказа...',
+        text: 'Пожалуйста, подождите',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        timer: 2500,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
     
-    const result = await response.json();
-    alert(`Заказ #${result.orderId} оформлен!`);
-    resetCart();
-    window.location.href = 'menu_order.html';
+      const response = await fetch(`${API_URL}/api/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          restaurantId: cart.restaurantId,
+          items: cart.items.map(item => ({
+            menu_item_id: item.menuItemId || item.id,
+            quantity: item.quantity,
+            price: item.price
+          })),
+          totalAmount: cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        })
+      });
+
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Order error response:', errorText);
+        throw new Error(`Ошибка сервера: ${response.status}`);
+      }
+      const result = await response.json();
+      resetCart();
+    }
     
   } catch (error) {
-    console.error('Ошибка:', error);
-    alert(`Ошибка: ${error.message}`);
+    console.error('Order error:', error);
+
+    await Swal.fire({
+      icon: 'error',
+      title: 'Ошибка оформления заказа',
+      text: error.message,
+      confirmButtonText: 'Понятно'
+    });
   }
 }
 
@@ -527,23 +697,21 @@ function setupCartHandlers() {
         name: card.querySelector('h3').textContent,
         price: parseFloat(card.querySelector('.price').textContent.replace(/[^\d.]/g, '')),
         image: card.querySelector('img').src,
-        tags: card.querySelector('.tags')?.textContent || '',
+        tags: card.querySelector('.mini p')?.textContent || '',
         restaurantId: localStorage.getItem('selectedRestaurantId'),
         menuItemId: card.dataset.id || generateItemId({
           name: card.querySelector('h3').textContent,
           price: parseFloat(card.querySelector('.price').textContent.replace(/[^\d.]/g, ''))
         })
       };
-      console.log('Lfyyst',itemData);
+      console.log('Adding to cart:', itemData);
       addToCart(itemData);
 
       addButton.classList.add('added');
       setTimeout(() => addButton.classList.remove('added'), 500);
     }
-
   });
   
-
   document.querySelector('.cart-container')?.addEventListener('click', e => {
     const itemElement = e.target.closest('.food-item');
     if (!itemElement) return;
@@ -556,9 +724,17 @@ function setupCartHandlers() {
       increaseQuantity(itemId);
     }
   });
-
-  saveCart();
-  document.querySelector('.review-payment-button')?.addEventListener('click', placeOrder);
+  const orderButton = document.querySelector('.review-payment-button');
+  if (orderButton) {
+    orderButton.addEventListener('click', async function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      
+      console.log('Order button clicked, preventing default behavior');
+      await placeOrder();
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initCart);

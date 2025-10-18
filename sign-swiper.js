@@ -1,35 +1,85 @@
 import { login, register, checkEmail, resetPassword } from './api.js';
-
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+function validatePassword(password) {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+    return passwordRegex.test(password);
+}
+function validateName(name) {
+    const nameRegex = /^[A-Za-zА-Яа-яЁё\s]{2,50}$/;
+    return nameRegex.test(name);
+}
+function showValidationError(message) {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Ошибка валидации',
+        text: message,
+        confirmButtonText: 'OK'
+    });
+}
 document.addEventListener('DOMContentLoaded', function() {
     const regButton = document.querySelector('#reg');
     if (regButton) {
         regButton.addEventListener('click', async () => {
-            const name = document.querySelector('.fio-sign')?.value;
-            const email = document.querySelector('.email-sign')?.value;
+            const name = document.querySelector('.fio-sign')?.value.trim();
+            const email = document.querySelector('.email-sign')?.value.trim();
             const password = document.querySelector('.password-sign')?.value;
 
             if (!name || !email || !password) {
-                alert('Пожалуйста, заполните все поля');
+                showValidationError('Пожалуйста, заполните все поля');
+                return;
+            }
+
+            if (!validateName(name)) {
+                showValidationError('ФИО должно содержать только буквы и быть не короче 2 символов');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                showValidationError('Пожалуйста, введите корректный email адрес');
+                return;
+            }
+
+            if (!validatePassword(password)) {
+                showValidationError('Пароль должен содержать минимум 6 символов, включая буквы и цифры');
                 return;
             }
 
             try {
-                const isPasswordReset = localStorage.getItem('resetEmail') === email;
+                const resetEmail = localStorage.getItem('resetEmail');
+                const isPasswordReset = resetEmail && resetEmail === email;
                 
                 if (isPasswordReset) {
+                    await Swal.fire({
+                        icon: 'loading',
+                        title: 'Смена пароля',
+                        timerProgressBar: true,
+                        timer:2400,
+                        text: 'Подождите, идет попытка сменить пароль!',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false
+                    });
                     const data = await resetPassword({ name, email, password });
                     console.log('Пароль успешно изменен:', data);
                     localStorage.removeItem('resetEmail');
-                    alert('Пароль успешно изменен! Теперь вы можете войти.');
                     window.location.href = 'signin.html';
                 } else {
+                    console.log('Registering new user:', email);
                     const data = await register({ name, email, password });
                     console.log('Успешная регистрация:', data);
                     window.location.href = 'signin.html';
                 }
             } catch (error) {
                 console.error('Ошибка:', error);
-                alert('Ошибка: ' + error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ошибка',
+                    text: error.message,
+                    confirmButtonText: 'OK'
+                });
             }
         });
     }
@@ -37,22 +87,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginButton = document.querySelector('#login');
     if (loginButton) {
         loginButton.addEventListener('click', async () => {
-            const email = document.querySelector('.email-sign')?.value;
+            const email = document.querySelector('.email-sign')?.value.trim();
             const password = document.querySelector('.password-sign')?.value;
 
             if (!email || !password) {
-                alert('Пожалуйста, заполните все поля');
+                showValidationError('Пожалуйста, заполните все поля');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                showValidationError('Пожалуйста, введите корректный email адрес');
                 return;
             }
 
             try {
                 const data = await login({ email, password });
                 console.log('Успешный вход:', data);
+                
+                // Сохраняем токен авторизации
                 localStorage.setItem('token', data.token);
+
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Успешный вход!',
+                    text: 'Добро пожаловать!',
+                    confirmButtonText: 'OK'
+                });
                 window.location.href = 'index.html';
+                
             } catch (error) {
                 console.error('Ошибка при входе:', error);
-                alert('Ошибка при входе: ' + error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ошибка входа',
+                    text: 'Ошибка при входе: ' + error.message,
+                    confirmButtonText: 'OK'
+                });
             }
         });
     }
@@ -61,10 +131,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (resetButton) {
             resetButton.addEventListener('click', async () => {
-                const email = document.querySelector('#resetEmail').value;
+                const email = document.querySelector('#resetEmail').value.trim();
                 
                 if (!email) {
-                    alert('Пожалуйста, введите email');
+                    showValidationError('Пожалуйста, введите email');
+                    return;
+                }
+
+                if (!validateEmail(email)) {
+                    showValidationError('Пожалуйста, введите корректный email адрес');
                     return;
                 }
 
@@ -72,15 +147,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     const response = await checkEmail(email);
                     
                     if (response.success) {
-                        alert(response.message || "На ваш email отправлена ссылка для сброса пароля.");
-                        localStorage.setItem('resetEmail', email);
-                        window.location.href = 'signup.html';
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Проверка почты',
+                                text: response.message || "На ваш email отправлена ссылка для сброса пароля.",
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                            localStorage.setItem('resetEmail', email);
+                            window.location.href = 'signup.html';
+                            });
                     } else {
-                        alert(response.error || 'Произошла ошибка');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ошибка',
+                            text: response.error || 'Произошла ошибка',
+                            confirmButtonText: 'OK'
+                        });
                     }
                 } catch (error) {
                     console.error('Password reset error:', error);
-                    alert(error.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ошибка',
+                        text: error.message,
+                        confirmButtonText: 'OK'
+                    });
                 }
             });
         }

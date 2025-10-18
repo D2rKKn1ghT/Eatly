@@ -9,6 +9,10 @@ async function handleResponse(response) {
     const data = await response.json();
     
     if (!response.ok) {
+        if (response.status === 401) {
+            localStorage.removeItem('token');
+            window.dispatchEvent(new Event('authChange'));
+        }
         throw new Error(data.error || 'Request failed');
     }
     

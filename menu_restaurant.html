@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.24.0/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -28,11 +29,20 @@
                 <li class="liner"><a href="contact.html">Поддержка</a></li>
             </ul>
         </nav>
-        <div class="regulog">
+        <div class="regulog" id="regulog" style="display: none;" >
             <ul class="regulog">
                 <li class="liner"><a href="signin.html">Войти</a></li>
                 <li class="reg"><a href="signup.html">Регистрация</a></li>
             </ul>
+        </div>
+        <div class="cart-header" id="cartHeader" style="display: none;">
+            <a href="menu_order.html" class="cart-icon-link">
+                <i class="ri-shopping-cart-line"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+            <button class="logout-btn" id="logoutBtn" >
+                <i class="ri-logout-box-line"></i>
+            </button>
         </div>
         <span class="line"></span>
       </div>
@@ -43,15 +53,15 @@
             <div class="cards mainres">
                 <div class="card mainres" data-id="">
                     <div class="card_image mainres">
-                        <img src="/Assets/Resturent1.png" id="restaurant-image">
+                        <img src="/Assets/Resturent.png" alt="" id="restaurant-image">
                     </div>
                     <div class="card_content mainres">
-                        <h3>Тот самый Каркарыч</h3>
+                        <h3></h3>
                         <div class="info mainres">
-                            <p>24 мин</p>
+                            <p></p>
                             <i class="ri-circle-fill"></i>
                             <i class="ri-star-fill"></i>
-                            <p class="rate">4.8</p>
+                            <p class="rate"></p>
                             <span class="bookmark mainres"><i class="ri-bookmark-fill"></i></span>
                         </div>
                     </div>
@@ -64,7 +74,7 @@
                 <h2 class="smaller">Популярное 🔥</h2>
             </div>
             <div class="mini-cards">
-                <div class="mini-card">
+                <!-- <div class="mini-card">
                     <i class="ri-heart-line" id="heart"></i>
                     <div class="card_image dish">
                         <img src="/Assets/Food1.png">
@@ -153,7 +163,7 @@
                         <p class="price">999.99 ₽</p>
                         <span class="add_dish"><i class="ri-add-line"></i></span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="separate" id="notNeed"></div>
@@ -304,6 +314,7 @@
       </footer>
       <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
       <script src="api.js" type="module"></script>
+      <script src="auth-manager.js"></script>
       <script src="buying.js" type="module"></script>
 </body>
 </html>

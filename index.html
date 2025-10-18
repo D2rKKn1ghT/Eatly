@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.24.0/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -28,11 +29,20 @@
                 <li class="liner"><a href="contact.html">Поддержка</a></li>
             </ul>
         </nav>
-        <div class="regulog">
+        <div class="regulog" id="regulog" style="display: none;" >
             <ul class="regulog">
                 <li class="liner"><a href="signin.html">Войти</a></li>
                 <li class="reg"><a href="signup.html">Регистрация</a></li>
             </ul>
+        </div>
+        <div class="cart-header" id="cartHeader" style="display: none;">
+            <a href="menu_order.html" class="cart-icon-link">
+                <i class="ri-shopping-cart-line"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+            <button class="logout-btn" id="logoutBtn" >
+                <i class="ri-logout-box-line"></i>
+            </button>
         </div>
         <span class="line"></span>
       </div>
@@ -107,11 +117,11 @@
         <div class="Restaurants_content">
             <h2>Наши лучшие <span class="Wordline">рестораны</span></h2>
             <div class="cards">
-                <div class="card">
+                <div class="card" data-id="1">
                     <div class="card_image">
                         <img src="/Assets/Resturent1.png">
                     </div>
-                    <div class="card_content">
+                    <div class="card_content" >
                         <span class="healthy"><p>Healthy</p></span>
                         <h3>Тот самый Каркарыч</h3>
                         <div class="info">
@@ -123,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" data-id="2">
                     <div class="card_image burg">
                         <img src="/Assets/Resturent2.png">
                     </div>
@@ -139,7 +149,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" data-id="3">
                     <div class="card_image">
                         <img src="/Assets/Resturent3.png" style="rotate: 0deg;">
                     </div>
@@ -453,6 +463,8 @@
         </div>
       </footer>
       <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+      <script src="auth-manager.js"></script>
       <script type="module" src="effects.js"></script>
+      <script src="buying.js" type="module"></script>
 </body>
 </html>

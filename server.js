@@ -106,20 +106,6 @@ app.get('/api/restaurants/:id/menu', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-function verifyToken(req, res, next) {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (!token) return res.status(401).json({ error: 'Требуется авторизация' });
-
-  try {
-    req.user = jwt.verify(token, process.env.JWT_SECRET || 'secret_key');
-    next();
-  } catch (err) {
-    if (err.name === 'TokenExpiredError') {
-      return res.status(401).json({ error: 'Токен просрочен' });
-    }
-    res.status(401).json({ error: 'Неверный токен' });
-  }
-}
 
 
 app.post('/auth/check-email', async (req, res) => {
@@ -189,22 +175,32 @@ app.post('/api/orders', authenticate, async (req, res) => {
     await db.run('BEGIN TRANSACTION');
     
     try {
-      const orderResult = await db.run(
+      const orderResult = await db.runPromise(
         'INSERT INTO orders (user_id, restaurant_id, total_amount) VALUES (?, ?, ?)',
         [req.user.userId, restaurantId, totalAmount]
       );
       
       const orderId = orderResult.lastID;
+      console.log('Created order with ID:', orderId);
+      
+      if (!orderId) {
+        throw new Error('Failed to get order ID');
+      }
       
       for (const item of items) {
-        await db.run(
+        await db.runPromise(
           'INSERT INTO order_items (order_id, menu_item_id, quantity, price) VALUES (?, ?, ?, ?)',
           [orderId, item.menu_item_id, item.quantity, item.price]
         );
       }
       
       await db.run('COMMIT');
-      res.json({ orderId });
+      
+      res.json({ 
+        success: true,
+        orderId: orderId,
+        message: 'Заказ успешно создан'
+      });
       
     } catch (error) {
       await db.run('ROLLBACK');
@@ -213,7 +209,10 @@ app.post('/api/orders', authenticate, async (req, res) => {
     
   } catch (error) {
     console.error('Ошибка создания заказа:', error);
-    res.status(500).json({ error: 'Ошибка сервера' });
+    res.status(500).json({ 
+      success: false,
+      error: 'Ошибка сервера при создании заказа' 
+    });
   }
 });
 
